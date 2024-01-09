@@ -16,3 +16,20 @@ docker run --rm --name 'boinc-client' \
   -e BOINC_CMD_LINE_OPTIONS="--allow_remote_gui_rpc" \
   'docker.io/michelecereda/boinc-client:intel-opensuse-7.24.1'
 ```
+
+## Gotchas
+
+- `pid: host` allows the containerized BOINC client to determine non-BOINC processes for CPU percentages and exclusive applications.
+
+## Sources
+
+- [Github]
+- [Docker hub]
+
+<!--
+  References
+  -->
+
+<!-- Upstream -->
+[docker hub]: https://hub.docker.com/r/boinc/client
+[github]: https://github.com/BOINC/boinc-client-docker
