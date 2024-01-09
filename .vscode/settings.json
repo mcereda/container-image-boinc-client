@@ -1,0 +1,15 @@
+{
+  "editor.formatOnPaste": true,
+  "json.schemas": [
+    {
+      "fileMatch": [ ".pre-commit-config.yaml" ],
+      "url": "https://json.schemastore.org/pre-commit-config.json"
+    }
+  ],
+
+  "cSpell.words": [
+    "boinc",
+    "commitlint",
+    "hadolint"
+  ]
+}
