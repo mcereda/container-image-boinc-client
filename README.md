@@ -11,6 +11,7 @@ docker build \
 docker run --rm --name 'boinc-client' \
   --net='host' \
   --pid='host' \
+  --cap-add 'SYS_NICE' \
   --device '/dev/dri:/dev/dri' \
   -e BOINC_GUI_RPC_PASSWORD="123" \
   -e BOINC_CMD_LINE_OPTIONS="--allow_remote_gui_rpc" \
