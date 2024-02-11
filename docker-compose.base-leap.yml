@@ -1,7 +1,7 @@
 version: '2.2'
 services:
   client:
-    image: docker.io/michelecereda/boinc-client:base-leap-7.22.0-20240211
+    image: docker.io/michelecereda/boinc-client:base-leap-7.22.0-20240212
     container_name: boinc-client
     restart: always
     network_mode: host
