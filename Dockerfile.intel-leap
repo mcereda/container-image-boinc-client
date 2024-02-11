@@ -1,0 +1,16 @@
+# Original file:
+# https://github.com/BOINC/boinc-client-docker/blob/master/Dockerfile.intel
+
+FROM docker.io/michelecereda/boinc-client:base-leap-7.22.0-20240211
+
+LABEL description="Intel GPU-savvy BOINC client on OpenSUSE Leap."
+
+USER root
+RUN   zypper -n install --no-recommends \
+        # OpenCL ICD Loader
+        ocl-icd-devel=2.2.11-8.3.1 \
+        # Intel NEO OpenCL
+        intel-opencl=21.39.21127-150500.5.3 \
+  &&  zypper -n clean -a
+
+USER boinc:boinc
