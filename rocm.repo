@@ -1,0 +1,6 @@
+[ROCm-6.0.2]
+name=ROCm6.0.2
+baseurl=https://repo.radeon.com/rocm/zyp/6.0.2/main
+enabled=1
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key

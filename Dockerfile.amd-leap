@@ -1,0 +1,18 @@
+# Original file:
+# https://github.com/BOINC/boinc-client-docker/blob/master/Dockerfile.amd
+
+FROM docker.io/michelecereda/boinc-client:base-leap-7.22.0-20240211
+
+LABEL description="AMD GPU-savvy BOINC client on OpenSUSE Leap."
+
+USER root
+COPY  amdgpu.repo rocm.repo /etc/zypp/repos.d/
+RUN   zypper -n --gpg-auto-import-keys install --no-recommends \
+        amdgpu-dkms=1:6.3.6.60002-1718217 \
+        # OpenCL ICD Loader
+        rocm-ocl-icd=2.0.0.60002-sles154.115 \
+        # ROCm OpenCL
+        rocm-opencl=2.0.0.60002-sles154.115 \
+  &&  zypper -n clean -a
+
+USER boinc:boinc

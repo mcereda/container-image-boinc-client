@@ -1,0 +1,7 @@
+[network]
+name=Networking services and related tools (15.5)
+type=rpm-md
+baseurl=https://download.opensuse.org/repositories/network/15.5/
+gpgcheck=1
+gpgkey=https://download.opensuse.org/repositories/network/15.5/repodata/repomd.xml.key
+enabled=1
