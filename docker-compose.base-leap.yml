@@ -1,0 +1,18 @@
+version: '2.2'
+services:
+  client:
+    image: docker.io/michelecereda/boinc-client:base-leap-7.22.0-20240211
+    container_name: boinc-client
+    restart: always
+    network_mode: host
+    pid: host
+    cap_add:
+      - SYS_NICE
+    mem_swappiness: 1
+    volumes:
+      - /etc/resolv.conf:/etc/resolv.conf:ro
+      - ./data:/var/lib/boinc
+    environment:
+      - BOINC_CMD_LINE_OPTIONS=--allow_remote_gui_rpc
+      - BOINC_GUI_RPC_PASSWORD=123
+      - TZ=Europe/Dublin

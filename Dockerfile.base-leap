@@ -1,0 +1,42 @@
+# Original file:
+# https://github.com/BOINC/boinc-client-docker/blob/master/Dockerfile.base-ubuntu
+
+FROM registry.opensuse.org/opensuse/leap:15.5
+
+LABEL maintainer="michelecereda" \
+      description="BOINC client on OpenSUSE Leap."
+
+ENV BOINC_GUI_RPC_PASSWORD="123" \
+    BOINC_REMOTE_HOST="0.0.0.0" \
+    BOINC_CMD_LINE_OPTIONS=""
+
+WORKDIR /var/lib/boinc
+
+# BOINC RPC port
+EXPOSE 31416
+
+CMD ["start-boinc.sh"]
+COPY start-boinc.sh /usr/bin/
+
+# The version of 'boinc-client' from OBS has issues with the installation.
+# Falling back to the one currently available in the main repository.
+# # For some reason, adding the 'network' repository with `zypper ar` did not
+# # create a working .repo file. Falling back to copying the file directly to the
+# # image.
+# COPY  network.repo /etc/zypp/repos.d/
+# RUN   zypper -n --gpg-auto-import-keys install --no-recommends \
+#         # Time Zone Database
+#         timezone=2023c-150000.75.23.1 \
+#         # BOINC client
+#         boinc-client=7.24.1-lp155.129.1 \
+#   &&  zypper -n clean -a
+RUN   zypper -n install --no-recommends \
+        # Time Zone Database
+        timezone=2023c-150000.75.23.1 \
+        # BOINC client
+        boinc-client=7.22.0-bp155.1.7 \
+  &&  zypper -n clean -a \
+  &&  chown -R 'boinc:boinc' '/var/lib/boinc' \
+  &&  chmod -R 'g+o' '/var/lib/boinc'
+
+USER boinc:boinc
