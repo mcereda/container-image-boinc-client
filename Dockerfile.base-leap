@@ -36,7 +36,6 @@ RUN   zypper -n install --no-recommends \
         # BOINC client
         boinc-client=7.22.0-bp155.1.7 \
   &&  zypper -n clean -a \
-  &&  chown -R 'boinc:boinc' '/var/lib/boinc' \
-  &&  chmod -R 'g+o' '/var/lib/boinc'
+  &&  chown -R 'boinc:boinc' '/var/lib/boinc'
 
 USER boinc:boinc

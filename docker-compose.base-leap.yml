@@ -11,7 +11,7 @@ services:
     mem_swappiness: 1
     volumes:
       - /etc/resolv.conf:/etc/resolv.conf:ro
-      - ./data:/var/lib/boinc
+      - ${PWD}/data:/var/lib/boinc
     environment:
       - BOINC_CMD_LINE_OPTIONS=--allow_remote_gui_rpc
       - BOINC_GUI_RPC_PASSWORD=123
