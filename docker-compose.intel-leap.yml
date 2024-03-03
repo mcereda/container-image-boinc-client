@@ -1,6 +1,6 @@
 version: '2.2'
 services:
-  client:
+  boinc-client:
     image: docker.io/michelecereda/boinc-client:intel-leap-7.22.0-20240212
     container_name: boinc-client
     restart: always
