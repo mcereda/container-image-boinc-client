@@ -21,9 +21,8 @@ build-base: ${dockerfile}
 build-intel: dockerfile ?= Dockerfile.intel-${distro}
 build-intel: ${dockerfile}
 	docker buildx build --load \
-		--build-arg \
-			'BOINC_CLIENT_VERSION=${BOINC_CLIENT_VERSION}'
-			'BASE_IMAGE_VERSION=${date}'
+		--build-arg 'BOINC_CLIENT_VERSION=${BOINC_CLIENT_VERSION}' \
+		--build-arg 'BASE_IMAGE_VERSION=${date}' \
 		-f '${dockerfile}' \
 		-t 'docker.io/michelecereda/boinc-client:intel-${distro}-${BOINC_CLIENT_VERSION}-${date}' \
 		'.'
@@ -31,9 +30,8 @@ build-intel: ${dockerfile}
 build-amd: dockerfile ?= Dockerfile.amd-${distro}
 build-amd: ${dockerfile}
 	docker buildx build --load \
-		--build-arg \
-			'BOINC_CLIENT_VERSION=${BOINC_CLIENT_VERSION}'
-			'BASE_IMAGE_VERSION=${date}'
+		--build-arg 'BOINC_CLIENT_VERSION=${BOINC_CLIENT_VERSION}' \
+		--build-arg 'BASE_IMAGE_VERSION=${date}' \
 		-f '${dockerfile}' \
 		-t 'docker.io/michelecereda/boinc-client:amd-${distro}-${BOINC_CLIENT_VERSION}-${date}' \
 		'.'
