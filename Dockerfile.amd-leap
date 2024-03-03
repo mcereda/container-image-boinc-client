@@ -1,7 +1,9 @@
 # Original file:
 # https://github.com/BOINC/boinc-client-docker/blob/master/Dockerfile.amd
 
-FROM docker.io/michelecereda/boinc-client:base-leap-7.22.0-20240212
+ARG BOINC_CLIENT_VERSION="7.22.0"
+ARG BASE_IMAGE_VERSION="20240212"
+FROM docker.io/michelecereda/boinc-client:base-leap-${BOINC_CLIENT_VERSION}-${BASE_IMAGE_VERSION}
 
 LABEL description="AMD GPU-savvy BOINC client on OpenSUSE Leap."
 

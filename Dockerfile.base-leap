@@ -1,7 +1,8 @@
 # Original file:
 # https://github.com/BOINC/boinc-client-docker/blob/master/Dockerfile.base-ubuntu
 
-FROM registry.opensuse.org/opensuse/leap:15.5
+ARG OPENSUSE_VERSION="15.5"
+FROM "registry.opensuse.org/opensuse/leap:${OPENSUSE_VERSION}"
 
 LABEL maintainer="michelecereda" \
       description="BOINC client on OpenSUSE Leap."
@@ -36,6 +37,6 @@ RUN   zypper -n install --no-recommends \
         # BOINC client
         boinc-client=7.22.0-bp155.1.7 \
   &&  zypper -n clean -a \
-  &&  chown -R 'boinc:boinc' '/var/lib/boinc'
+  &&  chown -R boinc:boinc /var/lib/boinc
 
 USER boinc:boinc
