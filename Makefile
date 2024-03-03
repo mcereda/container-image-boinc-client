@@ -16,7 +16,7 @@ test: # TODO
 %-base: image ?= base
 %-intel: image ?= intel
 
-tag ?= docker.io/michelecereda/boinc-client:${image}-${distro}-${BOINC_CLIENT_VERSION}-${date}'
+tag ?= docker.io/michelecereda/boinc-client:${image}-${distro}-${BOINC_CLIENT_VERSION}-${date}
 
 build-%: dockerfile ?= Dockerfile.${image}-${distro}
 build-%: ${dockerfile}
@@ -24,6 +24,15 @@ build-%: ${dockerfile}
 		-f '${dockerfile}' \
 		-t '${tag}' \
 		'.'
+	${MAKE} update-compose-%
+
+update-compose-%: composefile ?= docker-compose.${image}-${distro}.yml
+update-compose-%: ${composefile}
+	yq -y \
+		--arg 'tag' '${tag}' \
+		'.services."boinc-client".image=$$tag' \
+		'${composefile}' \
+	| sponge '${composefile}'
 
 run-base:
 	docker run --rm --name 'boinc-client' \
